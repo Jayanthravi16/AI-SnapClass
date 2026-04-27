@@ -1,0 +1,22 @@
+# These are the Required Utilities
+
+numpy
+pandas
+# Face Classification
+scikit-learn
+# Face Recognition (Gives Triangle Only, Shape)
+dlib-bin
+# Face Recognition (Gives Features of Face, in form of Embeddings)
+git+https://github.com/ageitgey/face_recognition_models
+# For managinig non-Python Packages
+setuptools<70.0.0
+
+# Database
+supabase
+# Hashing
+bcrypt
+
+# For QR code
+segno
+# Help in Image Preprocessing, Flip, Resize, Transform, Scale, etc
+streamlit
