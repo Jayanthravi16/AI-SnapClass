@@ -1,1 +1,9 @@
-/lenv
+/lenv/
+lenv/
+venv/
+.env
+.vscode
+*.pyc
+__pycache__/
+.streamlit/
+dist/

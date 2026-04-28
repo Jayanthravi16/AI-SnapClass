@@ -31,7 +31,12 @@ def style_base_layout():
             @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&family=Outfit:wght@100..900&display=swap');
 
             /* Hide top bar of streamlit */
-                
+                #MainMenu, footer, header{
+                visibility: hidden;
+            }
+            .block-container{
+                padding-top:1.5rem !important;
+            }
             #MainMenu, footer, header{
                 visibility: hidden;
             }
@@ -41,7 +46,7 @@ def style_base_layout():
                 
             h1{
                 font-family: 'Climate Crisis', sans-serif !important;
-                font-size: 2rem !important;
+                font-size: 3.5rem !important;
                 line-height: 0.9 !important;
                 margin-bottom: 0rem !important;
                 color: #E0E3FF !important;
@@ -55,7 +60,7 @@ def style_base_layout():
                 color: black !important;
             }
             
-            h3,h4,p {
+            h3,h4,p {SNAP
                 font-family: 'Outfit', sans-serif !important;
             }
             
@@ -85,6 +90,14 @@ def style_base_layout():
             }
             button:hover{
                 transform:scale(1.05)    
+            }
+            .dashboard-title {
+                font-family: 'Climate Crisis', sans-serif !important;
+                font-size: 2rem !important;
+                line-height: 0.9 !important;
+                color: #5865F2 !important;
+                text-align: left;
+                font-weight: bold;
             }
         </style>
     """, unsafe_allow_html=True)
