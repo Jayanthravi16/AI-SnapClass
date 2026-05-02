@@ -19,4 +19,12 @@ bcrypt
 # For QR code
 segno
 # Help in Image Preprocessing, Flip, Resize, Transform, Scale, etc
+pillow
+# frontend
 streamlit
+
+# Voice Recognitin 
+# edit load, cut n partition audio files
+librosa
+# Make embeddings of voice to compare
+resemblyzer 

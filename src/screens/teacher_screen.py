@@ -18,7 +18,7 @@ def teacher_screen():
 
 def teacher_dashboard():
     teacher_data=st.session_state.teacher_data
-    st.header(f"""
+    st.subheader(f"""
         Welcome, {teacher_data['name']}
     """)
 
