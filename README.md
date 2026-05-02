@@ -1,1 +1,1 @@
-# AI-VeriFace
+# AI-SnapClass
