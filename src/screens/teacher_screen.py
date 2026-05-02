@@ -16,11 +16,103 @@ def teacher_screen():
     elif st.session_state.teacher_login_type == "register":
         teacher_screen_register()
 
+# def teacher_dashboard():
+#     teacher_data=st.session_state.teacher_data
+#     c1,c2=st.columns(2, vertical_alignment='center', gap='xxlarge')
+#     with c1:
+#         header_dashboard()
+#     with c2:
+#         st.subheader(f"""Welcome, {teacher_data['name']}""")
+#         if st.button("Logout", type='secondary', key='loginbackbtn', shortcut="control+backspace"):
+#             st.session_state['is_logged_in']=False
+#             del st.session_state.teacher_data
+#             st.rerun()
+    
+#     st.space()
+#     st.space()
+#     st.space()
+
+#     if "current_teacher_tab" not in st.session_state:
+#         st.session_state.current_teacher_tab='take_attendance'
+#     tab1, tab2, tab3 = st.columns(3)
+#     with tab1:
+#         type1 = "primary" if st.session_state.current_teacher_tab =='take_attendance' else "tertiary"
+#         if st.button('Take Attendance',type=type3 ,width='stretch', icon=':material/ar_on_you:'):
+#             st.session_state.current_teacher_tab='take_attendance'
+#             st.rerun()
+#     with tab2:
+#         type2 = "primary" if st.session_state.current_teacher_tab =='manage_subjects' else "tertiary"
+#         if st.button('Manage Subjects', type=type2 , width='stretch', icon=':material/book_ribbon:'):
+#             st.session_state.current_teacher_tab='manage_subjects'
+#             st.rerun()
+#     with tab3:
+#         type3 = "primary" if st.session_state.current_teacher_tab =='attendance_records' else "tertiary"
+#         if st.button('Attendance Records',type=type3 , width='stretch', icon=':material/cards_stack:'):
+#             st.session_state.current_teacher_tab='attendance_records'
+#             st.rerun()
+            
+#     footer_dashboard()
+
 def teacher_dashboard():
-    teacher_data=st.session_state.teacher_data
-    st.subheader(f"""
-        Welcome, {teacher_data['name']}
-    """)
+    teacher_data = st.session_state.teacher_data
+    c1, c2 = st.columns(2, vertical_alignment='center', gap='xxlarge')
+    with c1:
+        header_dashboard()
+    with c2:
+        st.subheader(f"""Welcome, {teacher_data['name']}""")
+        # FIX 1: Changed key to 'logout_btn' to prevent DuplicateWidgetID error
+        if st.button("Logout", type='secondary', key='logout_btn', shortcut="control+backspace"):
+            st.session_state['is_logged_in'] = False
+            del st.session_state.teacher_data
+            st.rerun()
+    
+    st.space()
+    st.space()
+    st.space()
+
+    if "current_teacher_tab" not in st.session_state:
+        st.session_state.current_teacher_tab = 'take_attendance'
+        
+    tab1, tab2, tab3 = st.columns(3)
+    
+    with tab1:
+        type1 = "primary" if st.session_state.current_teacher_tab == 'take_attendance' else "tertiary"
+        # FIX 2: Changed type=type3 to type=type1
+        if st.button('Take Attendance', type=type1, width='stretch', icon=':material/ar_on_you:'):
+            st.session_state.current_teacher_tab = 'take_attendance'
+            st.rerun()
+            
+    with tab2:
+        type2 = "primary" if st.session_state.current_teacher_tab == 'manage_subjects' else "tertiary"
+        if st.button('Manage Subjects', type=type2, width='stretch', icon=':material/book_ribbon:'):
+            st.session_state.current_teacher_tab = 'manage_subjects'
+            st.rerun()
+            
+    with tab3:
+        type3 = "primary" if st.session_state.current_teacher_tab == 'attendance_records' else "tertiary"
+        if st.button('Attendance Records', type=type3, width='stretch', icon=':material/cards_stack:'):
+            st.session_state.current_teacher_tab = 'attendance_records'
+            st.rerun()
+
+    st.divider()
+
+    if st.session_state.current_teacher_tab=="take_attendance":
+        teacher_tab_take_attendance()     
+    if st.session_state.current_teacher_tab=="manage_subjects":
+        teacher_tab_manage_subjects() 
+    if st.session_state.current_teacher_tab=="attendance_records":
+        teacher_tab_attendance_records()   
+
+    footer_dashboard()
+
+def teacher_tab_take_attendance():
+    st.header('Take AI Attendance')
+
+def teacher_tab_manage_subjects():
+    st.header('Manage Subjects')
+
+def teacher_tab_attendance_records():
+    st.header('Attendance Records')
 
 def login_teacher(username, password):
     if not username or not password:
@@ -47,9 +139,10 @@ def teacher_screen_login():
     st.space()
     st.space()
 
-    teacher_username = st.text_input("Enter username", placeholder='jayanthravi16')
-    teacher_pass = st.text_input("Enter password", type='password', placeholder='Enter your   password')
-
+    # teacher_username = st.text_input("Enter username", placeholder='jayanthravi16')
+    # teacher_pass = st.text_input("Enter password", type='password', placeholder='Enter your   password')
+    teacher_username = st.text_input("Enter username", placeholder='jayanthravi16', key='login_user')
+    teacher_pass = st.text_input("Enter password", type='password', placeholder='Enter your password', key='login_pass')
     st.divider()
 
     btnc1, btnc2 = st.columns(2)
@@ -61,7 +154,7 @@ def teacher_screen_login():
                 time.sleep(1)
                 st.rerun()
             else:
-                st.error("Invalid username and combo")
+                st.error("Invalid username and password")
 
     with btnc2:
        if st.button('Register Instead', type='primary',  icon=':material/passkey:', width='stretch'):
@@ -96,10 +189,14 @@ def teacher_screen_register():
     st.space()
     st.space()
 
-    teacher_username = st.text_input("Enter username", placeholder='jayanthravi16')
-    teacher_name = st.text_input("Enter name", placeholder='Jayanth Ravi')
-    teacher_pass = st.text_input("Enter password", type='password', placeholder='Enter your   password')
-    teacher_pass_confirm = st.text_input("Confirm your password", type='password', placeholder='Enter your password')
+    # teacher_username = st.text_input("Enter username", placeholder='jayanthravi16')
+    # teacher_name = st.text_input("Enter name", placeholder='Jayanth Ravi')
+    # teacher_pass = st.text_input("Enter password", type='password', placeholder='Enter your   password')
+    # teacher_pass_confirm = st.text_input("Confirm your password", type='password', placeholder='Enter your password')
+    teacher_username = st.text_input("Enter username", placeholder='jayanthravi16', key='reg_user')
+    teacher_name = st.text_input("Enter name", placeholder='Jayanth Ravi', key='reg_name')
+    teacher_pass = st.text_input("Enter password", type='password', placeholder='Enter your password', key='reg_pass')
+    teacher_pass_confirm = st.text_input("Confirm your password", type='password', placeholder='Enter your password', key='reg_pass_conf')
 
 
     st.divider()
