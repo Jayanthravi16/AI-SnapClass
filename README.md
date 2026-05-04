@@ -1,4 +1,4 @@
-markdown_content = """# 📸 SnapClass 🎙️
+# 📸 SnapClass 🎙️
 **Next-Gen Biometric Attendance System for Classrooms**
 
 [![Made with Streamlit](https://img.shields.io/badge/Made%20with-Streamlit-FF4B4B.svg)](https://streamlit.io/)
